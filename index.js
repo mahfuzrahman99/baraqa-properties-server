@@ -1,7 +1,5 @@
 const express = require("express");
 const morgan = require("morgan");
-const { initializeApp } = require("firebase-admin/app");
-const { getAuth } = require("firebase-admin/auth");
 const cors = require("cors");
 require("dotenv").config();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
@@ -17,15 +15,6 @@ app.use(
 );
 app.use(express.json());
 app.use(morgan("dev"));
-
-initializeApp({
-  apiKey: "AIzaSyAeOkWIOh6OtzAZ3fpH1ZvGM55QjjKovkM",
-  authDomain: "baraqa-properties-limited-llc.firebaseapp.com",
-  projectId: "baraqa-properties-limited-llc",
-  storageBucket: "baraqa-properties-limited-llc.appspot.com",
-  messagingSenderId: "350171610805",
-  appId: "1:350171610805:web:fe24fc9da087e5cda988fc",
-});
 
 const uri =
   "mongodb+srv://BARAQAPROPERTIES:UP4obkI3rpAnd5gK@cluster0.wkixfkf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -45,27 +34,44 @@ async function run() {
     const demosCollection = client.db("BaraqaProperties").collection("demos");
     const usersCollection = client.db("BaraqaProperties").collection("users");
 
-    // Endpoint to create a new user
+    // without firebase
     app.post("/users", async (req, res) => {
+      const userItem = req.body;
+      // Create user mongo
       try {
-        const userItem = req.body;
-        // Create user in Firebase Auth
-        const userRecord = await getAuth().createUser({
+        const userRecord = {
           email: userItem.email,
           password: userItem.password,
-          displayName: userItem.name,
-          photoURL: userItem.photo,
-          disabled: false,
-        });
-        console.log("Successfully created new user:", userRecord.uid);
-        // Insert user data into MongoDB
-        const result = await usersCollection.insertOne(userItem);
+          name: userItem.name,
+          photoURL: userItem.photoURL,
+          role: userItem.role,
+        };
+        const result = await usersCollection.insertOne(userRecord);
         res.send(result);
       } catch (error) {
         console.log("Error creating new user:", error);
         res.status(500).send(error);
       }
     });
+
+    app.post("/login", async (req, res) => {
+      const user = req.body;
+      console.log(user);
+      try {
+        console.log(user.email);
+        const result = await usersCollection.findOne({ email: user.email });
+        if (result) {
+          if (result.email === user.email && result.password === user.password)
+            res.status(200).send(result);
+          else {
+            res.status(401).send("Authantication faild!");
+          }
+        }
+      } catch (error) {
+        res.send("Faild to login");
+      }
+    });
+
     // user get all
     app.get("/users", async (req, res) => {
       try {
