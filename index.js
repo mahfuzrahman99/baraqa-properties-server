@@ -10,7 +10,7 @@ const port = process.env.port || 5000;
 // Middlewares
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: ["http://localhost:5173", "http://localhost:5174", "https://baraqa-properties-limited-llc.surge.sh"],
   })
 );
 app.use(express.json());
