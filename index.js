@@ -10,7 +10,11 @@ const port = process.env.port || 5000;
 // Middlewares
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174", "https://baraqa-properties-limited-llc.surge.sh"],
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://baraqa-properties-limited-llc.surge.sh",
+    ],
   })
 );
 app.use(express.json());
@@ -31,7 +35,18 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     //   Create collections
-    const demosCollection = client.db("BaraqaProperties").collection("demos");
+    
+
+    await client.connect();
+    await client.db("admin").command({ ping: 1 });
+    console.log(
+      "Pinged your deployment. You successfully connected to MongoDB!"
+    );
+  } finally {
+  }
+}
+run().catch(console.dir);
+const demosCollection = client.db("BaraqaProperties").collection("demos");
     const usersCollection = client.db("BaraqaProperties").collection("users");
 
     // without firebase
@@ -202,17 +217,6 @@ async function run() {
         res.send(error);
       }
     });
-
-    await client.connect();
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
-  } finally {
-  }
-}
-run().catch(console.dir);
-
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
