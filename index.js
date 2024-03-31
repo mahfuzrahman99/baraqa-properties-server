@@ -14,6 +14,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "https://baraqa-properties-limited-llc.surge.sh",
+      "https://baraqah-properties-limited-llc.vercel.app",
     ],
   })
 );
