@@ -19,9 +19,5 @@
           "OPTIONS"
         ]
       }
-    ],
-    "rewrites": [
-      { "source": "/api/(.*)", "destination": "/api/$1" }
-    ],
-    "trailingSlash": true
+    ]
   }
