@@ -16,6 +16,7 @@ app.use(
       "https://baraqa-properties-limited-llc.surge.sh",
       "https://baraqah-properties-limited-llc.vercel.app",
       "https://www.baraqapropertyservices.com",
+      "https://baraqa-properties-limited-llc.web.app",
     ],
   })
 );
