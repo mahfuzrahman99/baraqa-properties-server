@@ -17,6 +17,7 @@ app.use(
       "https://baraqah-properties-limited-llc.vercel.app",
       "https://www.baraqapropertyservices.com",
       "https://baraqa-properties-limited-llc.web.app",
+      "http://3.81.72.173",
     ],
   })
 );
