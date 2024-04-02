@@ -143,7 +143,7 @@ async function run() {
     });
 
     // add project post
-    app.post("/demos", async (req, res) => {
+    app.post("/api/demos", async (req, res) => {
       try {
         const demoItem = req.body;
         const result = await demosCollection.insertOne(demoItem);
@@ -153,7 +153,7 @@ async function run() {
       }
     });
     // project get all
-    app.get("/demos", async (req, res) => {
+    app.get("/api/demos", async (req, res) => {
       try {
         const result = await demosCollection.find().toArray();
         res.send(result);
@@ -162,7 +162,7 @@ async function run() {
       }
     });
     // project get specific id
-    app.get("/demos/:id", async (req, res) => {
+    app.get("/api/demos/:id", async (req, res) => {
       try {
         const id = req.params.id;
         const result = await demosCollection.findOne({
@@ -174,7 +174,7 @@ async function run() {
       }
     });
     // update project
-    app.patch("/demos/:id", async (req, res) => {
+    app.patch("/api/demos/:id", async (req, res) => {
       try {
         const id = req.params.id;
         console.log(id);
@@ -199,7 +199,7 @@ async function run() {
       }
     });
     // Deleting project data
-    app.delete("/demos/:id", async (req, res) => {
+    app.delete("/api/demos/:id", async (req, res) => {
       try {
         const query = { _id: new ObjectId(req.params.id) };
         const result = await demosCollection.deleteOne(query);
