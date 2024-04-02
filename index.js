@@ -42,7 +42,7 @@ async function run() {
     const usersCollection = client.db("BaraqaProperties").collection("users");
 
     // without firebase
-    app.post("/users", async (req, res) => {
+    app.post("/api/users", async (req, res) => {
       const userItem = req.body;
       // Create user mongo
       try {
@@ -80,7 +80,7 @@ async function run() {
     });
 
     // user get all
-    app.get("/users", async (req, res) => {
+    app.get("/api/users", async (req, res) => {
       try {
         const result = await usersCollection.find().toArray();
         res.send(result);
@@ -89,7 +89,7 @@ async function run() {
       }
     });
     // user get via email
-    app.get("/getUserRole/:email", async (req, res) => {
+    app.get("/api/getUserRole/:email", async (req, res) => {
       try {
         const email = req.params.email;
         const result = await usersCollection.findOne({ email: email });
@@ -99,7 +99,7 @@ async function run() {
       }
     });
     // user get specific id
-    app.get("/users/:id", async (req, res) => {
+    app.get("/api/users/:id", async (req, res) => {
       try {
         const id = req.params.id;
         const result = await usersCollection.findOne({
@@ -111,7 +111,7 @@ async function run() {
       }
     });
     // update user
-    app.patch("/users/:id", async (req, res) => {
+    app.patch("/api/users/:id", async (req, res) => {
       try {
         const id = req.params.id;
         console.log(id);
@@ -130,7 +130,7 @@ async function run() {
       }
     });
     //   delete suer
-    app.delete("/users/:id", async (req, res) => {
+    app.delete("/api/users/:id", async (req, res) => {
       try {
         const id = req.params.id;
         console.log(id);
