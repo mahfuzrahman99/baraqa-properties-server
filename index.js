@@ -61,7 +61,7 @@ async function run() {
       }
     });
 
-    app.post("/api/login", async (req, res) => {
+    app.post("/login", async (req, res) => {
       const user = req.body;
       console.log(user);
       try {
