@@ -19,7 +19,6 @@ app.use(
       "https://www.baraqapropertyservices.com",
       "https://baraqa-properties-limited-llc.web.app",
       "http://3.81.72.173",
-      "http://localhost:3000",
     ],
   })
 );
