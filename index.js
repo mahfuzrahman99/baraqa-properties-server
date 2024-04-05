@@ -15,9 +15,11 @@ app.use(
       "http://localhost:5174",
       "https://baraqa-properties-limited-llc.surge.sh",
       "https://baraqah-properties-limited-llc.vercel.app",
+      "https://baraqa-properties-limited-llc.vercel.app",
       "https://www.baraqapropertyservices.com",
       "https://baraqa-properties-limited-llc.web.app",
       "http://3.81.72.173",
+      "http://localhost:3000",
     ],
   })
 );
@@ -84,16 +86,6 @@ async function run() {
       try {
         const result = await usersCollection.find().toArray();
         res.send(result);
-      } catch (error) {
-        res.send(error);
-      }
-    });
-    // user get via email
-    app.get("/api/getUserRole/:email", async (req, res) => {
-      try {
-        const email = req.params.email;
-        const result = await usersCollection.findOne({ email: email });
-        res.send(result.role);
       } catch (error) {
         res.send(error);
       }
