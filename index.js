@@ -18,6 +18,7 @@ app.use(
       "https://baraqa-properties-limited-llc.vercel.app",
       "https://www.baraqapropertyservices.com",
       "https://baraqa-properties-limited-llc.web.app",
+      "http://localhost:3000",
     ],
   })
 );
