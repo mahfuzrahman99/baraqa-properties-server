@@ -13,14 +13,16 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:5174",
-      "https://baraqa-properties-limited-llc.surge.sh",
-      "https://baraqah-properties-limited-llc.vercel.app",
-      "https://baraqa-properties-limited-llc.vercel.app",
-      "https://baraqa-properties-limited-llc-ubb1.vercel.app",
-      "https://www.baraqapropertyservices.com",
-      "https://baraqa-properties-limited-llc.web.app",
+      // "https://baraqa-properties-limited-llc.surge.sh",
+      // "https://baraqah-properties-limited-llc.vercel.app",
+      // "https://baraqa-properties-limited-llc.vercel.app",
+      // "https://baraqa-properties-limited-llc-ubb1.vercel.app",
+      // "https://www.baraqapropertyservices.com",
+      // "https://baraqa-properties-limited-llc.web.app",
+      "https://www.baraqapropertyservicesllc.com",
       "http://localhost:3000",
-      "https://barakah-phi.vercel.app",
+      // "https://barakah-phi.vercel.app",
+      // "https://barakah-zeta.vercel.app",
     ],
   })
 );
@@ -104,7 +106,7 @@ async function run() {
       }
     });
     // update user
-    app.patch("/api/users/:id", async (req, res) => {
+    app.put("/api/users/:id", async (req, res) => {
       try {
         const id = req.params.id;
         console.log(id);
@@ -167,7 +169,7 @@ async function run() {
       }
     });
     // update project
-    app.patch("/api/demos/:id", async (req, res) => {
+    app.put("/api/demos/:id", async (req, res) => {
       try {
         const id = req.params.id;
         console.log(id);
