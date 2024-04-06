@@ -20,6 +20,7 @@ app.use(
       "https://www.baraqapropertyservices.com",
       "https://baraqa-properties-limited-llc.web.app",
       "http://localhost:3000",
+      "https://barakah-phi.vercel.app",
     ],
   })
 );
